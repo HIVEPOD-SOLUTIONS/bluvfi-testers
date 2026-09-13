@@ -41,7 +41,7 @@
     COPY backend/prisma ./backend/prisma
     
     # Keep prisma version in sync with "prisma" in package.json (^5.22.0)
-    RUN npm ci --omit=dev \
+    RUN npm install \
      && npm install --no-save prisma@5.22.0 \
      && npx prisma generate --schema=backend/prisma/schema.prisma
     
