@@ -38,12 +38,12 @@
     RUN apk add --no-cache openssl
     
     COPY package.json package-lock.json ./
-    COPY prisma ./prisma
+    COPY prisma ./backend/prisma
     
     # Keep prisma version in sync with "prisma" in package.json (^5.22.0)
     RUN npm ci --omit=dev \
      && npm install --no-save prisma@5.22.0 \
-     && npx prisma generate
+     && npx prisma generate --schema=backend/prisma/schema.prisma
     
     COPY --from=builder /app/dist ./dist
     
