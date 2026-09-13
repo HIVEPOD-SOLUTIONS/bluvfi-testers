@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TesterRole {
+  USER
+  ADMIN
+}
+
+enum TesterStatus {
+  ACTIVE
+  INACTIVE
+  REMOVED
+}
+
+model TesterUser {
+  id                        String           @id @default(cuid())
+  email                     String           @unique
+  passwordHash              String
+  fullName                  String?
+  xHandle                   String?
+  telegramHandle            String?
+  referralCode              String           @unique
+  referredById              String?
+  referredBy                TesterUser?      @relation("TesterReferrals", fields: [referredById], references: [id], onDelete: SetNull)
+  referrals                 TesterUser[]     @relation("TesterReferrals")
+  role                      TesterRole       @default(USER)
+  status                    TesterStatus     @default(ACTIVE)
+  isSelected                Boolean          @default(false)
+  selectedAt                DateTime?
+  removedFromSelectedAt     DateTime?
+  removedFromSelectedReason String?
+  lastActiveAt              DateTime?
+  activities                TesterActivity[]
+  createdAt                 DateTime         @default(now())
+  updatedAt                 DateTime         @updatedAt
+
+  @@index([createdAt])
+  @@index([isSelected, status])
+  @@index([referredById])
+}
+
+model TesterActivity {
+  id        String     @id @default(cuid())
+  userId    String
+  user      TesterUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String     @default("manual_check_in")
+  note      String?
+  createdAt DateTime   @default(now())
+
+  @@index([userId, createdAt])
+}

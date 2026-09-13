@@ -1,0 +1,431 @@
+.bluvfi-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  color: var(--color-text-primary);
+}
+
+.bluvfi-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
+  gap: 2rem;
+  align-items: stretch;
+  margin-bottom: 1.5rem;
+}
+
+.bluvfi-hero-copy,
+.bluvfi-panel,
+.bluvfi-summary-panel {
+  background: var(--color-bg-glass);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+}
+
+.bluvfi-hero-copy {
+  padding: 2rem;
+}
+
+.bluvfi-kicker,
+.bluvfi-eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--color-accent-light);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bluvfi-hero h1 {
+  margin: 0 0 1rem;
+  font-size: 3rem;
+  letter-spacing: 0;
+}
+
+.bluvfi-hero p {
+  max-width: 62ch;
+}
+
+.bluvfi-actions,
+.bluvfi-admin-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.bluvfi-install-note {
+  margin: 1rem 0 0;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.bluvfi-button,
+.bluvfi-link-button,
+.bluvfi-icon-button {
+  min-height: 2.75rem;
+  border-radius: var(--radius-md);
+  outline-offset: 3px;
+}
+
+.bluvfi-button {
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+}
+
+.bluvfi-button.primary {
+  background: var(--gradient-primary);
+  color: var(--color-text-primary);
+}
+
+.bluvfi-button.secondary {
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-secondary);
+  color: var(--color-text-primary);
+}
+
+.bluvfi-button.danger {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+.bluvfi-link-button {
+  background: transparent;
+  color: var(--color-accent-light);
+  padding: 0.5rem 0.75rem;
+}
+
+.bluvfi-icon-button {
+  flex: 0 0 auto;
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-secondary);
+  padding: 0.5rem 0.75rem;
+}
+
+.bluvfi-summary-panel {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.bluvfi-summary-panel div,
+.bluvfi-profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+}
+
+.bluvfi-summary-panel span,
+.bluvfi-profile-card span,
+.bluvfi-muted,
+.bluvfi-table span,
+.bluvfi-field p {
+  color: var(--color-text-tertiary);
+  font-size: 0.8125rem;
+}
+
+.bluvfi-summary-panel strong,
+.bluvfi-profile-card strong {
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+}
+
+.bluvfi-alert {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+}
+
+.bluvfi-alert.error {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+.bluvfi-alert.success {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.35);
+  color: #bbf7d0;
+}
+
+.bluvfi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.bluvfi-panel {
+  padding: 1.5rem;
+}
+
+.bluvfi-panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.bluvfi-panel-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+}
+
+.bluvfi-form,
+.bluvfi-profile,
+.bluvfi-referral-box {
+  display: grid;
+  gap: 1rem;
+}
+
+.bluvfi-field {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.bluvfi-field label,
+.bluvfi-admin-controls label,
+.bluvfi-referral-box label {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.bluvfi-password-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.bluvfi-password-row input {
+  min-width: 0;
+}
+
+.bluvfi-segmented {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.375rem;
+  margin-bottom: 1rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+}
+
+.bluvfi-segmented button {
+  min-height: 2.5rem;
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.bluvfi-segmented button.active {
+  background: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
+}
+
+.bluvfi-leaderboard {
+  display: grid;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bluvfi-leaderboard li {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.875rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+}
+
+.bluvfi-rank {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-tertiary);
+  color: var(--color-accent-light);
+  font-weight: 800;
+}
+
+.bluvfi-leaderboard strong,
+.bluvfi-table strong {
+  display: block;
+  color: var(--color-text-primary);
+}
+
+.bluvfi-leaderboard p {
+  margin: 0.125rem 0 0;
+  font-size: 0.8125rem;
+}
+
+.bluvfi-leaderboard dl {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.bluvfi-leaderboard dt {
+  color: var(--color-text-tertiary);
+  font-size: 0.75rem;
+}
+
+.bluvfi-leaderboard dd {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-weight: 800;
+  text-align: right;
+}
+
+.bluvfi-empty {
+  display: grid;
+  gap: 0.5rem;
+  place-items: center;
+  min-height: 10rem;
+  padding: 1.5rem;
+  text-align: center;
+  background: var(--color-bg-elevated);
+  border: 1px dashed var(--color-border-secondary);
+  border-radius: var(--radius-md);
+}
+
+.bluvfi-empty p {
+  margin: 0;
+}
+
+.bluvfi-admin {
+  margin-top: 1.5rem;
+}
+
+.bluvfi-admin-controls {
+  margin-top: 0;
+}
+
+.bluvfi-admin-controls input {
+  width: min(18rem, 100%);
+}
+
+.bluvfi-reason {
+  max-width: 42rem;
+  margin-bottom: 1rem;
+}
+
+.bluvfi-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-md);
+}
+
+.bluvfi-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.bluvfi-table th,
+.bluvfi-table td {
+  padding: 0.875rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-primary);
+  vertical-align: middle;
+}
+
+.bluvfi-table th {
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.bluvfi-table td {
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+}
+
+.bluvfi-table-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.bluvfi-table-actions .bluvfi-button {
+  min-height: 2.5rem;
+  padding: 0.625rem 0.875rem;
+}
+.bluvfi-skeleton {
+  height: 32rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(90deg, var(--color-bg-secondary), var(--color-bg-tertiary), var(--color-bg-secondary));
+  background-size: 200% 100%;
+  animation: bluvfi-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes bluvfi-shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .bluvfi-hero,
+  .bluvfi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bluvfi-hero h1 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .bluvfi-page {
+    padding: 1rem 0.75rem 3rem;
+  }
+
+  .bluvfi-hero-copy,
+  .bluvfi-panel {
+    padding: 1rem;
+  }
+
+  .bluvfi-panel-header,
+  .bluvfi-password-row,
+  .bluvfi-admin-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bluvfi-actions .bluvfi-button,
+  .bluvfi-admin-controls .bluvfi-button,
+  .bluvfi-admin-controls input {
+    width: 100%;
+  }
+
+  .bluvfi-leaderboard li {
+    grid-template-columns: 2.25rem minmax(0, 1fr);
+  }
+
+  .bluvfi-leaderboard dl {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bluvfi-skeleton {
+    animation: none;
+  }
+}

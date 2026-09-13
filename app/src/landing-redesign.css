@@ -1,0 +1,635 @@
+.bottie-app-shell {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(37, 211, 150, 0.18), transparent 30%),
+    radial-gradient(circle at 86% 12%, rgba(56, 132, 255, 0.15), transparent 32%),
+    linear-gradient(180deg, #07110d 0%, #0d1514 46%, #eef8f2 46%, #ffffff 100%);
+  color: #eefcf5;
+}
+
+.bottie-nav {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 22px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.bottie-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f4fff9;
+  font-size: 1rem;
+  font-weight: 850;
+}
+
+.bottie-footer .bottie-brand {
+  color: #102018;
+}
+
+.bottie-logo,
+.bottie-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  box-shadow: 0 14px 30px rgba(36, 216, 149, 0.22);
+}
+
+.bottie-logo {
+  display: block;
+  object-fit: cover;
+}
+
+.bottie-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #24d895 0%, #3d8cff 100%);
+  color: #06100c;
+}
+
+.bottie-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+.bottie-links a {
+  color: rgba(238, 252, 245, 0.72);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.footer-links a {
+  color: #3c5d50;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.bottie-nav-cta,
+.bottie-primary-btn,
+.waitlist-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: 999px;
+  background: #24d895;
+  color: #06100c;
+  font-weight: 850;
+  padding: 0 22px;
+  box-shadow: 0 16px 34px rgba(36, 216, 149, 0.2);
+}
+
+.landing-redesign {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 34px;
+}
+
+.landing-redesign section {
+  margin-bottom: 88px;
+}
+
+.bottie-hero {
+  min-height: calc(100vh - 142px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.03fr) minmax(320px, 0.97fr);
+  align-items: center;
+  gap: 58px;
+}
+
+.bottie-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bottie-kicker {
+  margin: 0 0 18px;
+  color: #24d895;
+  font-size: 0.84rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bottie-title,
+.bottie-section h2 {
+  margin: 0;
+  font-weight: 850;
+  line-height: 1.02;
+  letter-spacing: 0;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+.bottie-title {
+  max-width: 790px;
+  color: #f7fff9;
+  font-size: clamp(3.1rem, 6.8vw, 6.6rem);
+}
+
+.bottie-subtitle {
+  max-width: 650px;
+  margin: 24px 0 0;
+  color: rgba(238, 252, 245, 0.72);
+  font-size: 1.08rem;
+  line-height: 1.72;
+}
+
+.bottie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+}
+
+.centered-actions {
+  justify-content: center;
+}
+
+.bottie-primary-btn,
+.bottie-secondary-btn {
+  min-height: 54px;
+  padding: 0 26px;
+}
+
+.bottie-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(238, 252, 245, 0.16);
+  color: #f4fff9;
+  font-weight: 800;
+}
+
+.bottie-section .bottie-secondary-btn {
+  background: rgba(6, 16, 12, 0.06);
+  border-color: rgba(16, 32, 24, 0.14);
+  color: #102018;
+}
+
+.bottie-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.bottie-trust-row span {
+  padding: 8px 12px;
+  border: 1px solid rgba(238, 252, 245, 0.14);
+  border-radius: 999px;
+  color: rgba(238, 252, 245, 0.78);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.bottie-console-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 610px;
+}
+
+.bottie-console {
+  width: min(410px, 100%);
+  align-self: center;
+  padding: 22px;
+  border: 1px solid rgba(238, 252, 245, 0.16);
+  border-radius: 34px;
+  background: linear-gradient(180deg, rgba(13, 28, 23, 0.96) 0%, rgba(7, 17, 13, 0.98) 100%);
+  box-shadow: 0 34px 70px rgba(0, 0, 0, 0.34);
+}
+
+.phone-topbar,
+.activity-card,
+.chain-row,
+.mini-ledger,
+.rate-ticket {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.phone-topbar {
+  color: rgba(238, 252, 245, 0.62);
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.balance-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: #f4fff9;
+  color: #06100c;
+}
+
+.balance-card span,
+.balance-card small {
+  display: block;
+  color: rgba(6, 16, 12, 0.62);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.balance-card strong {
+  display: block;
+  margin: 12px 0 10px;
+  color: #06100c;
+  font-size: 2.35rem;
+  line-height: 1;
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.quick-actions span {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #eefcf5;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
+.activity-card {
+  padding: 16px;
+  margin-top: 12px;
+  border: 1px solid rgba(238, 252, 245, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.activity-card span {
+  color: #eefcf5;
+  font-weight: 850;
+}
+
+.activity-card p {
+  margin: 2px 0 0;
+  color: rgba(238, 252, 245, 0.58);
+  font-size: 0.82rem;
+}
+
+.activity-card strong,
+.mini-ledger strong {
+  color: #24d895;
+}
+
+.floating-receipt {
+  position: absolute;
+  right: 2%;
+  bottom: 104px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: #f4fff9;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+}
+
+.floating-receipt span,
+.floating-receipt strong {
+  display: block;
+}
+
+.floating-receipt span {
+  color: #0f8d63;
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
+.floating-receipt strong {
+  color: #102018;
+  margin-top: 4px;
+}
+
+.bottie-section {
+  padding: 58px;
+  border: 1px solid rgba(16, 32, 24, 0.1);
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 24px 58px rgba(16, 31, 24, 0.08);
+}
+
+.bottie-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.72fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.bottie-section h2 {
+  color: #102018;
+  font-size: clamp(2.15rem, 4.8vw, 4.4rem);
+}
+
+.bottie-section p,
+.waitlist-section p {
+  max-width: 670px;
+  margin: 22px 0 0;
+  color: #486257;
+  font-size: 1.06rem;
+  line-height: 1.72;
+}
+
+.chain-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.chain-row {
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: #f8fffb;
+  border: 1px solid rgba(16, 32, 24, 0.1);
+}
+
+.chain-row span {
+  color: #1a3329;
+  font-weight: 800;
+}
+
+.chain-row strong {
+  color: #0f8d63;
+  font-size: 0.86rem;
+}
+
+.section-intro {
+  max-width: 800px;
+  margin-bottom: 36px;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.payment-card {
+  min-height: 340px;
+  padding: 24px;
+  border: 1px solid rgba(16, 32, 24, 0.1);
+  border-radius: 26px;
+  background: #fbfffd;
+}
+
+.payment-icon {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #e0f5eb;
+  color: #0f8d63;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.payment-card h3 {
+  margin: 22px 0 10px;
+  color: #102018;
+  font-size: 1.35rem;
+  letter-spacing: 0;
+}
+
+.payment-card p {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.mini-ledger,
+.rate-ticket {
+  margin-top: 34px;
+  padding: 16px;
+  border-radius: 18px;
+  background: #f0faf5;
+  color: #315547;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.qr-box {
+  width: 128px;
+  height: 128px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin: 28px 0 14px;
+  padding: 12px;
+  border-radius: 18px;
+  background: #102018;
+}
+
+.qr-box span {
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.qr-box span.active {
+  background: #24d895;
+}
+
+.scan-card small {
+  color: #0f8d63;
+  font-weight: 800;
+}
+
+.benefit-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  padding: 30px;
+  background: #102018;
+}
+
+.benefit-item {
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+}
+
+.benefit-item span {
+  width: 22px;
+  height: 22px;
+  display: block;
+  border-radius: 999px;
+  background: #27d69d;
+  box-shadow: inset 0 0 0 6px #102018;
+  border: 2px solid #27d69d;
+}
+
+.benefit-item p {
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.waitlist-section {
+  text-align: center;
+}
+
+.waitlist-section h2,
+.waitlist-section p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.waitlist-form {
+  width: min(760px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) auto;
+  gap: 10px;
+  margin: 32px auto 0;
+  padding: 8px;
+  border: 1px solid rgba(16, 32, 24, 0.12);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 18px 42px rgba(16, 31, 24, 0.08);
+}
+
+.waitlist-form input {
+  min-height: 48px;
+  border: 0;
+  background: transparent;
+  color: #102018;
+  padding: 0 18px;
+  box-shadow: none;
+}
+
+.waitlist-form input:focus {
+  box-shadow: none;
+}
+
+.waitlist-form button {
+  min-height: 48px;
+}
+
+.waitlist-section .centered-actions {
+  margin-top: 18px;
+}
+
+.bottie-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px 0 6px;
+  color: #5d746a;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.bottie-footer p {
+  margin: 0;
+  color: #5d746a;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 980px) {
+  .bottie-links {
+    display: none;
+  }
+
+  .bottie-hero,
+  .bottie-split,
+  .payment-grid,
+  .benefit-band {
+    grid-template-columns: 1fr;
+  }
+
+  .bottie-hero {
+    min-height: auto;
+    padding: 30px 0 0;
+  }
+
+  .bottie-console-stage {
+    min-height: 520px;
+  }
+
+  .floating-receipt {
+    right: 8%;
+  }
+}
+
+@media (max-width: 680px) {
+  .bottie-nav {
+    width: min(100% - 24px, 1180px);
+    gap: 12px;
+  }
+
+  .bottie-nav-cta {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 0.82rem;
+  }
+
+  .landing-redesign {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .bottie-title {
+    font-size: 3rem;
+  }
+
+  .bottie-actions,
+  .bottie-primary-btn,
+  .bottie-secondary-btn {
+    width: 100%;
+  }
+
+  .bottie-console-stage {
+    min-height: auto;
+    padding-bottom: 56px;
+  }
+
+  .floating-receipt {
+    right: 0;
+    bottom: 0;
+  }
+
+  .bottie-section {
+    padding: 28px;
+    border-radius: 26px;
+  }
+
+  .waitlist-form {
+    grid-template-columns: 1fr;
+    border-radius: 24px;
+  }
+
+  .waitlist-form input,
+  .waitlist-form button {
+    width: 100%;
+  }
+
+  .payment-card {
+    min-height: auto;
+  }
+
+  .bottie-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

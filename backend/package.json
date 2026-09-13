@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "axios": "^1.9.0",
+    "bcryptjs": "^3.0.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "form-data": "^4.0.2",
+    "ioredis": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "pinata-web3": "^0.5.4",
+    "prisma": "^5.22.0",
+    "viem": "^2.30.6"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/form-data": "^2.2.1",
+    "@types/node": "^20.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc --project src/tsconfig.json",
+    "test:yakoa": "ts-node src/scripts/test-yakoa.ts",
+    "test:yakoa:unique": "ts-node src/yakoa/test-unique.ts",
+    "yakoa:register": "ts-node src/yakoa/index.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio"
+  }
+}
