@@ -23,6 +23,7 @@
     COPY backend/src ./backend/src
     RUN npm run build
     
+    
     # ---------------------------------------------------------------------------
     # Stage 2 — production runtime
     # Prod-only deps + prisma CLI so `prisma migrate deploy` can run from this
