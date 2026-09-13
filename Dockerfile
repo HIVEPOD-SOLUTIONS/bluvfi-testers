@@ -15,8 +15,8 @@
     COPY package.json package-lock.json ./
     RUN npm ci
     
-    COPY prisma ./prisma
-    RUN npx prisma generate
+    COPY backend/prisma ./backend/prisma
+    RUN npx prisma generate --schema=backend/prisma/schema.prisma
     
     # Build uses src/tsconfig.json per your package.json build script
     COPY backend/src/tsconfig.json ./backend/src/tsconfig.json
