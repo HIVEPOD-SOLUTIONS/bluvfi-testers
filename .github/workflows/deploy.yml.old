@@ -153,6 +153,22 @@ jobs:
             echo "--- Starting container ---"
             sudo docker compose up -d --remove-orphans
 
+            echo "--- Waiting for health check (max 120s) ---"
+            for i in $(seq 1 24); do
+              OK=$(curl -fsS http://127.0.0.1:3001/health >/dev/null 2>&1 && echo yes || echo no)
+              if [ "$OK" = "yes" ]; then
+                echo "Service healthy."
+                break
+              fi
+              if [ "$i" -eq 24 ]; then
+                echo "ERROR: service did not become healthy in 120s"
+                sudo docker compose logs --tail 80 bluvfi-backend || true
+                exit 1
+              fi
+              echo "  attempt $i/24 — retrying in 5s..."
+              sleep 5
+            done
+
             echo "--- Container status ---"
             sudo docker compose ps
 
@@ -171,6 +187,9 @@ jobs:
             cd /home/$USER/bluvfi-backend
             echo "=== Final container state ==="
             sudo docker compose ps
+            echo ""
+            echo "=== Health ==="
+            curl -fsS http://127.0.0.1:3001/health && echo " OK" || echo " FAIL"
             echo ""
             echo "=== Pruning unused Docker resources ==="
             sudo docker system prune -a -f
