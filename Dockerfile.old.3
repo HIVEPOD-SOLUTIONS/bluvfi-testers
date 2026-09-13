@@ -43,11 +43,8 @@
      && npm install --no-save prisma@5.22.0 \
      && npx prisma generate
     
-    # Copy built assets from builder stage.
-    # NOTE: Because tsconfig.json is in the src/ folder, "outDir": "dist" 
-    # resolves to src/dist. If your tsconfig.json explicitly uses "../dist", 
-    # change the source path below to /app/backend/dist
-    COPY --from=builder /app/backend/src/dist ./dist
+    # Copy built assets from builder stage
+    COPY --from=builder /app/backend/dist ./dist
     
     EXPOSE 3001
     
