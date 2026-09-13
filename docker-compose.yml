@@ -1,0 +1,20 @@
+# Deployed on the EC2 host by .github/workflows/deploy.yml. Redis and
+# Postgres are NOT defined here - both are already real managed services
+# (see DATABASE_URL/REDIS_URL in .env.production), not containers this host
+# runs itself, so this is deliberately a single-service compose file.
+services:
+  bluvfi-xrpl:
+    image: ${DOCKER_IMAGE}
+    container_name: bluvfi-xrpl
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    ports:
+      - "3001:3001"
+    # HEALTHCHECK is inherited from the image (Dockerfile) - not redeclared
+    # here, so there's exactly one place that defines what "healthy" means.
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

@@ -1,0 +1,191 @@
+name: CI / CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 1 — Build verification
+# Runs on every push and every PR.
+# No test runner (Jest) in package.json — only type-check and build.
+# ─────────────────────────────────────────────────────────────────────────────
+jobs:
+  ci:
+    name: Type-check & verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Type-check
+        run: npx tsc --project src/tsconfig.json --noEmit
+
+      - name: Build
+        run: npm run build
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 2 — Build & push Docker image to Docker Hub
+# Runs only on pushes to main (not on PRs).
+# ─────────────────────────────────────────────────────────────────────────────
+  push-image:
+    name: Build & push image
+    needs: ci
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ${{ secrets.DOCKER_USERNAME }}/bluvfi-backend:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build & push bluvfi-backend
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE }}
+            ${{ secrets.DOCKER_USERNAME }}/bluvfi-backend:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Job 3 — Deploy to EC2 via SSH
+# Runs prisma migrate deploy against DATABASE_URL in .env.production,
+# then pulls the latest image and restarts the container via docker compose.
+# ─────────────────────────────────────────────────────────────────────────────
+  deploy:
+    name: Deploy to EC2
+    needs: push-image
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      IMAGE: ${{ secrets.DOCKER_USERNAME }}/bluvfi-backend:latest
+    steps:
+      - name: Checkout (for docker-compose.yml)
+        uses: actions/checkout@v4
+
+      - name: Copy docker-compose.yml to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          source: docker-compose.yml
+          target: /home/${{ secrets.EC2_USERNAME }}/bluvfi-backend
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          envs: IMAGE
+          script: |
+            set -e
+            echo "=== Deployment started at $(date -u '+%Y-%m-%d %H:%M:%S UTC') ==="
+
+            APP_DIR=/home/$USER/bluvfi-backend
+            ENV_FILE=$APP_DIR/.env.production
+
+            if [ ! -f "$ENV_FILE" ]; then
+              echo "ERROR: missing $ENV_FILE on this host."
+              echo "Create it first - see DEPLOYMENT.md for the required keys."
+              exit 1
+            fi
+
+            cd "$APP_DIR"
+
+            # Write DOCKER_IMAGE into a plain .env so every docker compose
+            # invocation resolves the variable correctly regardless of sudo
+            # context or SSH session boundaries.
+            echo "DOCKER_IMAGE=$IMAGE" > .env
+
+            echo "--- Logging in to Docker Hub ---"
+            echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | \
+              sudo docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+            echo "--- Pulling latest image ---"
+            sudo docker compose pull
+
+            echo "--- Running database migrations (prisma migrate deploy) ---"
+            # One-off container using the same image and env file the app
+            # will run with — ensures schema is always in sync before the
+            # new container starts.
+            sudo docker compose run --rm --no-deps bluvfi-backend \
+              npx prisma migrate deploy
+
+            echo "--- Removing any pre-existing standalone container ---"
+            sudo docker rm -f bluvfi-backend 2>/dev/null || true
+
+            echo "--- Starting container ---"
+            sudo docker compose up -d --remove-orphans
+
+            echo "--- Waiting for health check (max 120s) ---"
+            for i in $(seq 1 24); do
+              OK=$(curl -fsS http://127.0.0.1:3001/health >/dev/null 2>&1 && echo yes || echo no)
+              if [ "$OK" = "yes" ]; then
+                echo "Service healthy."
+                break
+              fi
+              if [ "$i" -eq 24 ]; then
+                echo "ERROR: service did not become healthy in 120s"
+                sudo docker compose logs --tail 80 bluvfi-backend || true
+                exit 1
+              fi
+              echo "  attempt $i/24 — retrying in 5s..."
+              sleep 5
+            done
+
+            echo "--- Container status ---"
+            sudo docker compose ps
+
+            echo "--- Recent logs ---"
+            sudo docker compose logs --tail 30 bluvfi-backend
+
+            echo "=== Deployment completed at $(date -u '+%Y-%m-%d %H:%M:%S UTC') ==="
+
+      - name: Post-deploy verification
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/$USER/bluvfi-backend
+            echo "=== Final container state ==="
+            sudo docker compose ps
+            echo ""
+            echo "=== Health ==="
+            curl -fsS http://127.0.0.1:3001/health && echo " OK" || echo " FAIL"
+            echo ""
+            echo "=== Pruning unused Docker resources ==="
+            sudo docker system prune -a -f
