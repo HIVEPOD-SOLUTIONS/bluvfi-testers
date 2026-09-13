@@ -31,19 +31,15 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: backend
 
       - name: Generate Prisma client
-        run: npx prisma@5.22.0 generate --schema=prisma/schema.prisma
-        working-directory: backend
+        run: npx prisma generate
 
       - name: Type-check
         run: npx tsc --project src/tsconfig.json --noEmit
-        working-directory: backend
 
       - name: Build
         run: npm run build
-        working-directory: backend
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Job 2 — Build & push Docker image to Docker Hub
