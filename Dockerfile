@@ -19,7 +19,7 @@
     RUN npx prisma generate
     
     # Build uses src/tsconfig.json per your package.json build script
-    COPY src/tsconfig.json ./src/tsconfig.json
+    COPY backend/src/tsconfig.json ./backend/src/tsconfig.json
     COPY backend/src ./backend/src
     RUN npm run build
     
