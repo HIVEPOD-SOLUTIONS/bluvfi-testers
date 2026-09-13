@@ -3,9 +3,9 @@
 # (see DATABASE_URL/REDIS_URL in .env.production), not containers this host
 # runs itself, so this is deliberately a single-service compose file.
 services:
-  bluvfi-backend:
+  bluvfi-xrpl:
     image: ${DOCKER_IMAGE}
-    container_name: bluvfi-backend
+    container_name: bluvfi-xrpl
     restart: unless-stopped
     env_file:
       - .env.production
