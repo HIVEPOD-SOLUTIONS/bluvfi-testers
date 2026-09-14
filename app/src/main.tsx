@@ -10,10 +10,18 @@ const client = createThirdwebClient({
   clientId: "c0016c054a796a6fa54b18dd24ed5f77",
 });
 
+const pathname = window.location.pathname;
+
+// Show tester page at "/", "/bluvfi-testers", and "/bluvfi-testers/"
+const showTesterPage =
+  pathname === "/" ||
+  pathname === "/bluvfi-testers" ||
+  pathname === "/bluvfi-testers/";
+
 createRoot(document.getElementById("root")!).render(
   <ThirdwebProvider>
     <NotificationProvider>
-      {window.location.pathname === "/bluvfi-testers" ? (
+      {showTesterPage ? (
         <BluvfiTestersPage />
       ) : (
         <App thirdwebClient={client} />
